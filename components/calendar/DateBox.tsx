@@ -9,13 +9,13 @@ export function DateBox({
     blank?: boolean
 }) {
     return (
-        <li data-testid="date-box" className="bg-white border border-gray-300 h-32">
+        <div data-testid="date-box" className="bg-white border border-gray-300 h-32">
             {!blank && date && (
                 <>
                     <p>{date.getDate()}</p>
                     <p>{translateDayOfWeek(date)}</p>
                 </>
             )}
-        </li>
+        </div>
     );
 };
