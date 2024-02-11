@@ -8,11 +8,11 @@ export function DateBoxList({date}: {date: Date}) {
         dateList.push(new Date(date.getFullYear(), date.getMonth(), i));
     }
     return (
-        <div>
+        <ul>
             {dateList.map((date, index) => (
                 <DateBox key={index} date={date} />
             ))}
-        </div>
+        </ul>
     );
 }
 
