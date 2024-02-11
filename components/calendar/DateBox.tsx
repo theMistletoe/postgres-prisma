@@ -1,7 +1,7 @@
 export function DateBox({dateNumber}: {dateNumber: number}) {
     return (
         <div>
-            <p></p>
+            <p>{dateNumber}</p>
         </div>
     );
 };
