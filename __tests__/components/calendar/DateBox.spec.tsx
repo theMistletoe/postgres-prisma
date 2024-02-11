@@ -16,4 +16,10 @@ describe('DateBox', () => {
     const dayOfWeek = getByText('日');
     expect(dayOfWeek).toBeInTheDocument();
   });
+
+  it('blankオプションを渡すと、日付が見えない空欄セルが見える', async () => {
+    const { queryByText } = render(<DateBox blank />);
+    const cell = await queryByText("paragraph");
+    expect(cell).not.toBeInTheDocument();
+  });
 });
