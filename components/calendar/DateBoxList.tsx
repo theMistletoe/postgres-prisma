@@ -8,11 +8,12 @@ export function DateBoxList({date}: {date: Date}) {
         dateList.push(new Date(date.getFullYear(), date.getMonth(), i));
     }
     return (
-        <ul>
+        <ul className="grid grid-cols-7 gap-4">
             {dateList.map((date, index) => (
-                <DateBox key={index} date={date} />
+                <li key={index} className="p-2">
+                    <DateBox date={date} />
+                </li>
             ))}
         </ul>
     );
-}
-
+};
