@@ -8,9 +8,9 @@ export function DateBoxList({date}: {date: Date}) {
         dateList.push(new Date(date.getFullYear(), date.getMonth(), i));
     }
     return (
-        <ul className="grid grid-cols-7 gap-4">
+        <ul className="grid grid-cols-7 w-full">
             {dateList.map((date, index) => (
-                <li key={index} className="p-2">
+                <li key={index}>
                     <DateBox date={date} />
                 </li>
             ))}
