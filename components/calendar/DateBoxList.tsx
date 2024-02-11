@@ -13,7 +13,7 @@ export function DateBoxList({date}: {date: Date}) {
     return (
         <ul className="grid grid-cols-7 w-full">
             {dateList.map((date, index) => (
-                <li key={index} className="border border-gray-300">
+                <li key={index} >
                     {date ? <DateBox date={date} /> : <DateBox blank />}
                 </li>
             ))}
