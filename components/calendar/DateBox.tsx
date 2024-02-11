@@ -1,7 +1,7 @@
-export function DateBox({dateNumber}: {dateNumber: number}) {
+export function DateBox({date}: {date: Date}) {
     return (
         <div>
-            <p>{dateNumber}</p>
+            <p>{date.getDate()}</p>
         </div>
     );
 };
