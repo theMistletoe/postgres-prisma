@@ -10,10 +10,10 @@ describe('DateBox', () => {
     expect(dateText).toBeInTheDocument();
   });
 
-  // it('曜日が見える', () => {
-  //   const date = new Date("2023-05-21");
-  //   const { getByText } = render(<DateBox date={date} />);
-  //   const dayOfWeek = getByText('日');
-  //   expect(dayOfWeek).toBeInTheDocument();
-  // });
+  it('曜日が見える', () => {
+    const date = new Date("2023-05-21");
+    const { getByText } = render(<DateBox date={date} />);
+    const dayOfWeek = getByText('日');
+    expect(dayOfWeek).toBeInTheDocument();
+  });
 });
