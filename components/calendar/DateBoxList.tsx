@@ -1,6 +1,6 @@
 import { DateBox } from "./DateBox";
 
-export function DateBoxList({date}: {date: Date}) {
+export function DateBoxList({date,onClick}: {date: Date, onClick: (event: Date) => void}) {
     const firstDate = new Date(date.getFullYear(), date.getMonth(), 1);
     const lastDate = new Date(date.getFullYear(), date.getMonth() + 1, 0);
     const dateList = [];
@@ -14,7 +14,7 @@ export function DateBoxList({date}: {date: Date}) {
         <ul className="grid grid-cols-7 w-full">
             {dateList.map((date, index) => (
                 <li key={index} >
-                    {date ? <DateBox date={date} /> : <DateBox blank />}
+                    {date ? <DateBox date={date} onClick={onClick} /> : <DateBox blank onClick={onClick} />}
                 </li>
             ))}
         </ul>
