@@ -7,9 +7,20 @@ describe('ScheduleFormModal', () => {
 
     it('タイトルが見える', async () => {
         const date = new Date("2023-05-21");
-        const { findByText } = render(<ScheduleFormModal date={date} isOpen={true} />); 
+        const { findByText } = render(<ScheduleFormModal date={date} isOpen={true} onClose={vi.fn} />); 
 
         const title = await findByText('2023-05-21の予定');
         expect(title).toBeInTheDocument();
+    });
+
+    it('閉じるボタンを押すと、モーダルが閉じられる。', async () => {
+        const date = new Date("2023-05-21");
+        const handleClose = vi.fn();
+        const { findByText } = render(<ScheduleFormModal date={date} isOpen={true} onClose={handleClose} />); 
+
+        const closeButton = await findByText('閉じる');
+        await user.click(closeButton);
+
+        expect(handleClose).toHaveBeenCalled();
     });
 });
