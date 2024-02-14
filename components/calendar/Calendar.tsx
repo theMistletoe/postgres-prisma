@@ -1,9 +1,8 @@
 "use client";
 
-import { Fragment, useState } from "react";
+import { useState } from "react";
 import { CalendarHeader } from "./CalendarHeader";
 import { DateBoxList } from "./DateBoxList";
-import { Dialog, Transition } from '@headlessui/react'
 import { ScheduleFormModal } from "./ScheduleFormModal";
 
 export default function Calendar({ date }: { date: Date }) {
@@ -20,7 +19,7 @@ export default function Calendar({ date }: { date: Date }) {
             <CalendarHeader date={date} />
             <DateBoxList date={date} onClick={handleDateBoxClick} />
             {selectedDate && (
-                <ScheduleFormModal date={selectedDate} isOpen={isOpen} />
+                <ScheduleFormModal date={selectedDate} isOpen={isOpen} onClose={() => setIsOpen(false)} />
             )}
         </>
     )
