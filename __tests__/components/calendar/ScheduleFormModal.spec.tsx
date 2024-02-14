@@ -13,6 +13,14 @@ describe('ScheduleFormModal', () => {
         expect(title).toBeInTheDocument();
     });
 
+    it('モーダルを非表示にできる', async () => {
+        const date = new Date("2023-05-21");
+        const { queryByText } = render(<ScheduleFormModal date={date} isOpen={false} onClose={vi.fn} />); 
+
+        const title = await queryByText('2023-05-21の予定');
+        expect(title).not.toBeInTheDocument();
+    });
+
     it('閉じるボタンを押すと、モーダルが閉じられる。', async () => {
         const date = new Date("2023-05-21");
         const handleClose = vi.fn();
