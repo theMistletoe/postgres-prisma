@@ -1,7 +1,31 @@
 import { Dialog, Transition } from "@headlessui/react";
-import { Fragment } from "react";
+import { Schedule } from "@prisma/client";
+import { Fragment, useState } from "react";
 
-export function ScheduleFormModal({date, isOpen, onClose}: {date: Date, isOpen: boolean, onClose: () => void}) {
+export function ScheduleFormModal({date, isOpen, onClose, onScheduleCreate}: {date: Date, isOpen: boolean, onClose: () => void , onScheduleCreate: (createdSchedule: Schedule) => void}) {
+    const [title, setTitle] = useState<string>('');
+    const [startTime, setStartTime] = useState<string>('');
+    const [endTime, setEndTime] = useState<string>('');
+
+    async function handleSave() {
+        const res = await fetch(`/api/schedule`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                title: title,
+                startTime: new Date(date.getFullYear(), date.getMonth(), date.getDate(), parseInt(startTime.split(':')[0]), parseInt(startTime.split(':')[1])),
+                endTime: new Date(date.getFullYear(), date.getMonth(), date.getDate(), parseInt(endTime.split(':')[0]), parseInt(endTime.split(':')[1])),
+            }),
+        });
+
+        res.json().then((data) => {
+            onScheduleCreate(data);
+            onClose();
+        });
+    }
+
   return (
     <>
         <Transition appear show={isOpen} as={Fragment}>
@@ -36,6 +60,20 @@ export function ScheduleFormModal({date, isOpen, onClose}: {date: Date, isOpen: 
                             >
                                 {`${date.toISOString().slice(0, 10)}の予定`}
                             </Dialog.Title>
+
+                            <div className="mt-2">
+                                <input type="text" placeholder="予定タイトル" className="w-full p-2 border rounded-md" value={title} onChange={(e) => setTitle(e.target.value)} />
+                            </div>
+                            <div className="mt-2">
+                                <input type="text" placeholder="開始時刻" className="w-full p-2 border rounded-md" value={startTime} onChange={(e) => setStartTime(e.target.value)} />
+                            </div>
+                            <div className="mt-2">
+                                <input type="text" placeholder="終了時刻" className="w-full p-2 border rounded-md" value={endTime} onChange={(e) => setEndTime(e.target.value)} />
+                            </div>
+                            <div className="mt-4">
+                                <button onClick={handleSave} type="button" className="inline-flex justify-center rounded-md border border-transparent bg-blue-500 px-4 py-2 text-sm font-medium text-white hover:bg-blue-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2">保存</button>
+                            </div>
+
                             <button type="button" onClick={onClose} className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2">閉じる</button>
                         </Dialog.Panel>
                     </Transition.Child>
