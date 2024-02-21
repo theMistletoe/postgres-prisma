@@ -62,13 +62,16 @@ export function ScheduleFormModal({date, isOpen, onClose, onScheduleCreate}: {da
                             </Dialog.Title>
 
                             <div className="mt-2">
-                                <input type="text" placeholder="予定タイトル" className="w-full p-2 border rounded-md" value={title} onChange={(e) => setTitle(e.target.value)} />
+                                <label htmlFor="title" className="block text-sm font-medium text-gray-700">予定タイトル</label>
+                                <input type="text" id="title" placeholder="予定タイトル" className="w-full p-2 border rounded-md" value={title} onChange={(e) => setTitle(e.target.value)} />
                             </div>
                             <div className="mt-2">
-                                <input type="text" placeholder="開始時刻" className="w-full p-2 border rounded-md" value={startTime} onChange={(e) => setStartTime(e.target.value)} />
+                                <label htmlFor="startTime" className="block text-sm font-medium text-gray-700">開始時刻</label>
+                                <input type="text" id="startTime" placeholder="開始時刻" className="w-full p-2 border rounded-md" value={startTime} onChange={(e) => setStartTime(e.target.value)} />
                             </div>
                             <div className="mt-2">
-                                <input type="text" placeholder="終了時刻" className="w-full p-2 border rounded-md" value={endTime} onChange={(e) => setEndTime(e.target.value)} />
+                                <label htmlFor="endTime" className="block text-sm font-medium text-gray-700">終了時刻</label>
+                                <input type="text" id="endTime" placeholder="終了時刻" className="w-full p-2 border rounded-md" value={endTime} onChange={(e) => setEndTime(e.target.value)} />
                             </div>
                             <div className=" flex justify-between mt-4">
                                 <button type="button" onClick={onClose} className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2">閉じる</button>
