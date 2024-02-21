@@ -7,6 +7,7 @@ export function ScheduleFormModal({date, isOpen, onClose, onScheduleCreate}: {da
     const [startTime, setStartTime] = useState<string>('');
     const [endTime, setEndTime] = useState<string>('');
 
+    // TODO: カスタムフックにリファクタリング
     async function handleSave() {
         const res = await fetch(`/api/schedule`, {
             method: "POST",
