@@ -55,7 +55,7 @@ describe('ScheduleFormModal', () => {
         const handleScheduleCreate = vi.fn();
         const { findByPlaceholderText, findByText } = render(<ScheduleFormModal date={date} isOpen={true} onClose={handleClose} onScheduleCreate={handleScheduleCreate} />); 
 
-        const titleInput = await findByPlaceholderText('予定タイトル');
+        const titleInput = await findByPlaceholderText('例）歯医者に行く');
         const startTimeInput = await findByPlaceholderText('開始時刻');
         const endTimeInput = await findByPlaceholderText('終了時刻');
 

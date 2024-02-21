@@ -63,7 +63,7 @@ export function ScheduleFormModal({date, isOpen, onClose, onScheduleCreate}: {da
 
                             <div className="mt-2">
                                 <label htmlFor="title" className="block text-sm font-medium text-gray-700">予定タイトル</label>
-                                <input type="text" id="title" placeholder="予定タイトル" className="w-full p-2 border rounded-md" value={title} onChange={(e) => setTitle(e.target.value)} />
+                                <input type="text" id="title" placeholder="例）歯医者に行く" className="w-full p-2 border rounded-md" value={title} onChange={(e) => setTitle(e.target.value)} />
                             </div>
                             <div className="mt-2">
                                 <label htmlFor="startTime" className="block text-sm font-medium text-gray-700">開始時刻</label>
