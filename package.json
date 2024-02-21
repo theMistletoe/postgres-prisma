@@ -9,7 +9,7 @@
     "build": "prisma generate && prisma db push && prisma db seed && next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "vitest"
+    "test": "dotenv -e .env.local -- vitest"
   },
   "prisma": {
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
