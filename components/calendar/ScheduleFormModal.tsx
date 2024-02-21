@@ -70,11 +70,11 @@ export function ScheduleFormModal({date, isOpen, onClose, onScheduleCreate}: {da
                             <div className="mt-2">
                                 <input type="text" placeholder="終了時刻" className="w-full p-2 border rounded-md" value={endTime} onChange={(e) => setEndTime(e.target.value)} />
                             </div>
-                            <div className="mt-4">
+                            <div className=" flex justify-between mt-4">
+                                <button type="button" onClick={onClose} className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2">閉じる</button>
                                 <button onClick={handleSave} type="button" className="inline-flex justify-center rounded-md border border-transparent bg-blue-500 px-4 py-2 text-sm font-medium text-white hover:bg-blue-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2">保存</button>
                             </div>
 
-                            <button type="button" onClick={onClose} className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2">閉じる</button>
                         </Dialog.Panel>
                     </Transition.Child>
                 </div>
