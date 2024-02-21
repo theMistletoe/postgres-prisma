@@ -53,7 +53,7 @@ describe('ScheduleFormModal', () => {
         const date = new Date("2023-05-21");
         const handleClose = vi.fn();
         const handleScheduleCreate = vi.fn();
-        const { findByPlaceholderText, findByText, queryByText } = render(<ScheduleFormModal date={date} isOpen={true} onClose={handleClose} onScheduleCreate={handleScheduleCreate} />); 
+        const { findByPlaceholderText, findByText } = render(<ScheduleFormModal date={date} isOpen={true} onClose={handleClose} onScheduleCreate={handleScheduleCreate} />); 
 
         const titleInput = await findByPlaceholderText('予定タイトル');
         const startTimeInput = await findByPlaceholderText('開始時刻');
