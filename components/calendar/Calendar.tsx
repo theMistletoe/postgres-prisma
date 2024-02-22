@@ -19,7 +19,7 @@ export default function Calendar({ date }: { date: Date }) {
             <CalendarHeader date={date} />
             <DateBoxList date={date} onClick={handleDateBoxClick} />
             {selectedDate && (
-                <ScheduleFormModal date={selectedDate} isOpen={isOpen} onClose={() => setIsOpen(false)} />
+                <ScheduleFormModal date={selectedDate} isOpen={isOpen} onClose={() => setIsOpen(false)} onScheduleCreate={() => {}} />
             )}
         </>
     )
