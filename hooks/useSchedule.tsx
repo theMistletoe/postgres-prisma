@@ -18,5 +18,13 @@ export function useSchedule() {
         });
     };
 
-    return { schedules, addSchedule };
+    function getSchedules() {
+        fetch(`/api/schedule`)
+            .then((res) => res.json())
+            .then((data) => {
+                setSchedules(data);
+            });
+    }
+
+    return { schedules, addSchedule, getSchedules };
 }
