@@ -1,13 +1,16 @@
 import { translateDayOfWeek } from "@/lib/translateDayOfWeek";
+import { Schedule } from "@prisma/client";
 
 export function DateBox({
     date,
     blank,
+    schedules,
     onClick,
 }:
 {
     date?: Date,
-    blank?: boolean
+    blank?: boolean,
+    schedules?: Schedule[],
     onClick: (date: Date) => void
 }) {
 
@@ -25,6 +28,13 @@ export function DateBox({
                     <p className="text-xs">{translateDayOfWeek(date)}</p>
                 </div>
             )}
+            {schedules && schedules.map((schedule) => {
+                return (
+                    <div key={schedule.id} className="bg-blue-300 p-1 m-1">
+                        <p>{schedule.title}</p>
+                    </div>
+                );
+            })}
         </div>
     );
 };
