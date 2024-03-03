@@ -15,19 +15,17 @@ export function DateBoxList({ date, schedules, onClick }: DateBoxListProps) {
             Array.from({ length: lastDate.getDate() - firstDate.getDate() + 1 }, (_, i) => new Date(date.getFullYear(), date.getMonth(), i + firstDate.getDate()))
         );
 
+        function getSchedulesByDay(date: Date): Schedule[] | undefined {
+            return schedules?.filter((schedule) => date?.toISOString().slice(0, 10) === schedule.startTime.toISOString().slice(0, 10));
+        };
+
     return (
         <ul className="grid grid-cols-7 w-full">
-            {dateList.map((date, index) => {
-                const filteredSchedulesByDay = schedules?.filter((schedule) => {
-                    return date?.toISOString().slice(0, 10) === schedule.startTime.toISOString().slice(0, 10);
-                });
-
-                return (
-                    <li key={index} >
-                        {date ? <DateBox date={date} onClick={onClick} schedules={filteredSchedulesByDay} /> : <DateBox blank onClick={onClick} />}
-                    </li>
-                )
-            })}
+            {dateList.map((date, index) => (
+                <li key={index} >
+                    {date ? <DateBox date={date} onClick={onClick} schedules={getSchedulesByDay(date)} /> : <DateBox blank onClick={onClick} />}
+                </li>
+            ))}
         </ul>
     );
 };
