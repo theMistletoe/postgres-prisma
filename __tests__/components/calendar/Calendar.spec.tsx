@@ -15,18 +15,19 @@ fetchGETMock.mockReturnValue(
             {
                 id: 133,
                 title: "テスト予定2",
-                startTime: new Date("2023-05-21T12:00:00.000Z"),
-                endTime: new Date("2023-05-21T13:00:00.000Z"),
+                startTime: new Date("2023-05-22T12:00:00.000Z"),
+                endTime: new Date("2023-05-22T13:00:00.000Z"),
             },
             {
                 id: 134,
                 title: "テスト予定3",
-                startTime: new Date("2023-05-21T14:00:00.000Z"),
-                endTime: new Date("2023-05-21T15:00:00.000Z"),
+                startTime: new Date("2023-05-23T14:00:00.000Z"),
+                endTime: new Date("2023-05-23T15:00:00.000Z"),
             }
         ]),
     }),
 );
+vi.stubGlobal('fetch', fetchGETMock);
 
 describe('Calendar', () => {
     const user = userEvent.setup();
@@ -40,15 +41,19 @@ describe('Calendar', () => {
         expect(header).toBeInTheDocument();
     });
 
-    it.skip('当月の登録済みの予定が見える', async () => {
+    it('当月の登録済みの予定が見える', async () => {
         const date = new Date("2023-05-21");
-        const { getByText } = render(<Calendar date={date} />); 
+        const { findByTestId } = render(<Calendar date={date} />); 
 
-        const schedule1 = getByText('テスト予定');
-        const schedule2 = getByText('テスト予定2');
-        const schedule3 = getByText('テスト予定3');
-        expect(schedule1).toBeInTheDocument();
-        expect(schedule2).toBeInTheDocument();
-        expect(schedule3).toBeInTheDocument();
+        const dateBox1 = await findByTestId('date-box_2023-05-21');
+        const dateBox2 = await findByTestId('date-box_2023-05-22');
+        const dateBox3 = await findByTestId('date-box_2023-05-23');
+
+        expect(dateBox1).toBeVisible();
+        expect(dateBox2).toBeVisible();
+        expect(dateBox3).toBeVisible();
+        expect(dateBox1).toHaveTextContent(/^21日テスト予定$/);
+        expect(dateBox2).toHaveTextContent(/^22月テスト予定2$/);
+        expect(dateBox3).toHaveTextContent(/^23火テスト予定3$/);
     });
 });
