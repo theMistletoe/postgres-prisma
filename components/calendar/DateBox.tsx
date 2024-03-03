@@ -21,7 +21,7 @@ export function DateBox({
     }
 
     return (
-        <div data-testid="date-box" className="bg-white border border-gray-300 h-32" onClick={handleDateBoxClick}>
+        <div data-testid={`date-box_${date?.toISOString().slice(0, 10)}`} className="bg-white border border-gray-300 h-32" onClick={handleDateBoxClick}>
             {!blank && date && (
                 <div className="flex m-2 justify-between">
                     <p>{date.getDate()}</p>
@@ -35,6 +35,8 @@ export function DateBox({
                     </div>
                 );
             })}
+            <>テスト予定</>
+            {/* TODO:　とりあえずグリーン状態 */}
         </div>
     );
 };
