@@ -35,8 +35,6 @@ export function DateBox({
                     </div>
                 );
             })}
-            <>テスト予定</>
-            {/* TODO:　とりあえずグリーン状態 */}
         </div>
     );
 };
