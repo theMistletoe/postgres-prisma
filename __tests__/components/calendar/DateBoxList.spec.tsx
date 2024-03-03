@@ -46,9 +46,12 @@ describe('DateBoxList', () => {
     } onClick={vi.fn()} />);
 
     const dateBox1 = getByTestId('date-box_2024-02-01');
+    const dateBox2 = getByTestId('date-box_2024-02-02');
 
+    
     expect(dateBox1).toBeVisible();
-    expect(dateBox1).toHaveTextContent('1木テスト予定');
-    // TODO: アサーションを追加するべき
+    expect(dateBox1).toHaveTextContent(/^1木テスト予定$/);
+    expect(dateBox2).toBeVisible();
+    expect(dateBox2).toHaveTextContent(/^2金テスト予定2テスト予定3$/);
   });
 });
