@@ -1,6 +1,18 @@
+import { Schedule } from "@prisma/client";
 import { DateBox } from "./DateBox";
 
-export function DateBoxList({date,onClick}: {date: Date, onClick: (event: Date) => void}) {
+export function DateBoxList(
+    {
+        date,
+        schedules,
+        onClick
+    }:
+    {
+        date: Date,
+        schedules?: Schedule[],
+        onClick: (event: Date) => void
+    }
+) {
     const firstDate = new Date(date.getFullYear(), date.getMonth(), 1);
     const lastDate = new Date(date.getFullYear(), date.getMonth() + 1, 0);
     const dateList = [];
@@ -12,11 +24,17 @@ export function DateBoxList({date,onClick}: {date: Date, onClick: (event: Date) 
     }
     return (
         <ul className="grid grid-cols-7 w-full">
-            {dateList.map((date, index) => (
-                <li key={index} >
-                    {date ? <DateBox date={date} onClick={onClick} /> : <DateBox blank onClick={onClick} />}
-                </li>
-            ))}
+            {dateList.map((date, index) => {
+                const filteredSchedulesByDay = schedules?.filter((schedule) => {
+                    return date?.toISOString().slice(0, 10) === schedule.startTime.toISOString().slice(0, 10);
+                }); 
+                
+                return (
+                    <li key={index} >
+                        {date ? <DateBox date={date} onClick={onClick} schedules={filteredSchedulesByDay} /> : <DateBox blank onClick={onClick} />}
+                    </li>
+                )
+            })}
         </ul>
     );
 };
