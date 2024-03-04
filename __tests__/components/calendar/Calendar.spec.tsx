@@ -37,7 +37,7 @@ describe('Calendar', () => {
         const { getByText, getByPlaceholderText } = render(<Calendar date={date} />); 
         await user.click(getByText('21'));
 
-        const header = getByText('2023-05-21の予定');
+        const header = getByText('2023/05/21の予定');
         expect(header).toBeInTheDocument();
     });
 
