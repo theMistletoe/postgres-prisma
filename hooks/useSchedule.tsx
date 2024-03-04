@@ -18,11 +18,29 @@ export function useSchedule() {
         });
     };
 
+    function convertStartTimeEndTimeToDate(schedule: {
+        id: number;
+        title: string;
+        startTime: string;
+        endTime: string;
+    }) {
+        return {
+            ...schedule,
+            startTime: new Date(schedule.startTime),
+            endTime: new Date(schedule.endTime),
+        };
+    }
+
     function getSchedules() {
         fetch(`/api/schedule`)
             .then((res) => res.json())
             .then((data) => {
-                setSchedules(data);
+                setSchedules(data.map((schedule: {
+                    id: number;
+                    title: string;
+                    startTime: string;
+                    endTime: string;
+                }) => convertStartTimeEndTimeToDate(schedule)));
             });
     }
 
