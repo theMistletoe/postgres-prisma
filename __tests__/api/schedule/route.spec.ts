@@ -1,4 +1,4 @@
-import { POST } from "@/app/api/schedule/route";
+import { GET, POST } from "@/app/api/schedule/route";
 import prisma from '@/lib/prisma'
 
 describe("schedule api route", () => {
@@ -37,6 +37,43 @@ describe("schedule api route", () => {
                     endTime: new Date("2021-01-01T01:00:00.000Z"),
                 });
             });
+        });
+    });
+
+    describe('GET', () => {
+        it('should return schedules', async () => {
+            await prisma.schedule.createMany({
+                data: [
+                    {
+                        title: "Test",
+                        startTime: new Date("2021-01-01T00:00:00.000Z"),
+                        endTime: new Date("2021-01-01T01:00:00.000Z"),
+                    },
+                    {
+                        title: "Test2",
+                        startTime: new Date("2021-01-02T00:00:00.000Z"),
+                        endTime: new Date("2021-01-02T01:00:00.000Z"),
+                    },
+                ],
+            });
+
+            const result = await GET({} as any);
+            const returnedSchedules = await result.json();
+
+            expect(returnedSchedules).toEqual([
+                {
+                    id: expect.any(Number),
+                    title: "Test",
+                    startTime: "2021-01-01T00:00:00.000Z",
+                    endTime: "2021-01-01T01:00:00.000Z",
+                },
+                {
+                    id: expect.any(Number),
+                    title: "Test2",
+                    startTime: "2021-01-02T00:00:00.000Z",
+                    endTime: "2021-01-02T01:00:00.000Z",
+                },
+            ]);
         });
     });
 });
