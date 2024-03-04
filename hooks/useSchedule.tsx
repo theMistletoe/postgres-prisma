@@ -35,12 +35,14 @@ export function useSchedule() {
         fetch(`/api/schedule`)
             .then((res) => res.json())
             .then((data) => {
-                setSchedules(data.map((schedule: {
+                const convertedSchedules = data.map((schedule: {
                     id: number;
                     title: string;
                     startTime: string;
                     endTime: string;
-                }) => convertStartTimeEndTimeToDate(schedule)));
+                }) => convertStartTimeEndTimeToDate(schedule))
+
+                setSchedules(convertedSchedules);
             });
     }
 
