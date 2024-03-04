@@ -1,10 +1,8 @@
 import prisma from '@/lib/prisma'
 
 export const dynamic = 'force-dynamic' // defaults to auto
-export async function GET(request: Request) {
+export async function GET(_request: Request) {
     const schedules = await prisma.schedule.findMany();
-
-    console.log(schedules);
 
     return new Response(JSON.stringify(schedules), {
         headers: {
