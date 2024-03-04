@@ -20,20 +20,20 @@ fetchGETMock.mockReturnValue(
             {
                 id: 132,
                 title: "テスト予定",
-                startTime: new Date("2023-05-21T10:00:00.000Z"),
-                endTime: new Date("2023-05-21T11:00:00.000Z"),
+                startTime: "2023-05-21T10:00:00.000Z",
+                endTime: "2023-05-21T11:00:00.000Z",
             },
             {
                 id: 133,
                 title: "テスト予定2",
-                startTime: new Date("2023-05-21T12:00:00.000Z"),
-                endTime: new Date("2023-05-21T13:00:00.000Z"),
+                startTime: "2023-05-21T12:00:00.000Z",
+                endTime: "2023-05-21T13:00:00.000Z",
             },
             {
                 id: 134,
                 title: "テスト予定3",
-                startTime: new Date("2023-05-21T14:00:00.000Z"),
-                endTime: new Date("2023-05-21T15:00:00.000Z"),
+                startTime: "2023-05-21T14:00:00.000Z",
+                endTime: "2023-05-21T15:00:00.000Z",
             }
         ]),
     }),
@@ -71,6 +71,11 @@ describe('useSchedule', () => {
             expect(result.current.schedules[0].title).toBe('テスト予定');
             expect(result.current.schedules[1].title).toBe('テスト予定2');
             expect(result.current.schedules[2].title).toBe('テスト予定3');
+        })
+        await waitFor(() => {
+            expect(result.current.schedules[0].startTime.toISOString()).toBe("2023-05-21T10:00:00.000Z");
+            expect(result.current.schedules[1].startTime.toISOString()).toBe("2023-05-21T12:00:00.000Z");
+            expect(result.current.schedules[2].startTime.toISOString()).toBe("2023-05-21T14:00:00.000Z");
         })
     });
 });
