@@ -26,7 +26,7 @@ describe('ScheduleFormModal', () => {
         const date = new Date("2023-05-21");
         const { findByText } = render(<ScheduleFormModal date={date} isOpen={true} onClose={vi.fn} onScheduleCreate={vi.fn()} />); 
 
-        const title = await findByText('2023-05-21の予定');
+        const title = await findByText('2023/05/21の予定');
         expect(title).toBeInTheDocument();
     });
 
