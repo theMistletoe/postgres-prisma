@@ -1,3 +1,4 @@
+import { formatDisplayDate } from "@/lib/formatDisplayDate";
 import { Dialog, Transition } from "@headlessui/react";
 import { Schedule } from "@prisma/client";
 import { Fragment, useState } from "react";
@@ -59,7 +60,7 @@ export function ScheduleFormModal({date, isOpen, onClose, onScheduleCreate}: {da
                                 as="h3"
                                 className="text-lg font-medium leading-6 text-gray-900"
                             >
-                                {`${date.toISOString().slice(0, 10)}の予定`}
+                                {`${formatDisplayDate(date)}の予定`}
                             </Dialog.Title>
 
                             <div className="mt-2">
