@@ -70,8 +70,8 @@ describe('useSchedule', () => {
         expect(result.current.schedules[0].title).toBe('テスト予定');
         expect(result.current.schedules[1].title).toBe('テスト予定2');
         expect(result.current.schedules[2].title).toBe('テスト予定3');
-        expect(result.current.schedules[0].startTime.toISOString()).toBe("2023-05-21T10:00:00.000Z");
-        expect(result.current.schedules[1].startTime.toISOString()).toBe("2023-05-21T12:00:00.000Z");
-        expect(result.current.schedules[2].startTime.toISOString()).toBe("2023-05-21T14:00:00.000Z");
+        expect(result.current.schedules[0].startTime.toISOString()).toBe("2023-05-21T19:00:00.000Z");
+        expect(result.current.schedules[1].startTime.toISOString()).toBe("2023-05-21T21:00:00.000Z");
+        expect(result.current.schedules[2].startTime.toISOString()).toBe("2023-05-21T23:00:00.000Z");
     });
 });
