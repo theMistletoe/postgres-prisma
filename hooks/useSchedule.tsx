@@ -26,9 +26,15 @@ export function useSchedule() {
     }) {
         return {
             ...schedule,
-            startTime: new Date(schedule.startTime),
-            endTime: new Date(schedule.endTime),
+            startTime: convertToJST(new Date(schedule.startTime)),
+            endTime: convertToJST(new Date(schedule.endTime)),
         };
+    }
+
+    function convertToJST(date: Date): Date {
+        return new Date(new Date(date).toLocaleString("ja-JP", {
+            timeZone: "Asia/Tokyo",
+        }));
     }
 
     function getSchedules() {
