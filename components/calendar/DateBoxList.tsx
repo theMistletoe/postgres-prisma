@@ -1,5 +1,6 @@
 import { Schedule } from "@prisma/client";
 import { DateBox } from "./DateBox";
+import { formatDisplayDate } from "@/lib/formatDisplayDate";
 
 type DateBoxListProps = {
     date: Date,
@@ -15,9 +16,15 @@ export function DateBoxList({ date, schedules, onClick }: DateBoxListProps) {
             Array.from({ length: lastDate.getDate() - firstDate.getDate() + 1 }, (_, i) => new Date(date.getFullYear(), date.getMonth(), i + firstDate.getDate()))
         );
 
-        function getSchedulesByDay(date: Date): Schedule[] | undefined {
-            return schedules?.filter((schedule) => date?.toISOString().slice(0, 10) === schedule.startTime.toISOString().slice(0, 10));
-        };
+    function getSchedulesByDay(date: Date): Schedule[] | undefined {
+        return schedules?.filter((schedule) => isSameDay(date, schedule.startTime));
+    };
+
+    function isSameDay(date1: Date, date2: Date): boolean {
+        return date1.getFullYear() === date2.getFullYear() &&
+            date1.getMonth() === date2.getMonth() &&
+            date1.getDate() === date2.getDate();
+    }
 
     return (
         <ul className="grid grid-cols-7 w-full">
