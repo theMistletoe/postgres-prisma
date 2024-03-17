@@ -18,6 +18,10 @@ describe('DateBoxList', () => {
 
     const dateBoxes = getAllByTestId(/^date-box/);
     expect(dateBoxes).toHaveLength(33);
+    expect(dateBoxes[0]).toHaveTextContent('');
+    expect(dateBoxes[1]).toHaveTextContent('');
+    expect(dateBoxes[2]).toHaveTextContent('');
+    expect(dateBoxes[3]).toHaveTextContent('');
     expect(dateBoxes[4]).toHaveTextContent(/^1木$/);
   });
 
