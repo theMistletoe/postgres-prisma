@@ -18,6 +18,7 @@ describe('DateBoxList', () => {
 
     const dateBoxes = getAllByTestId(/^date-box/);
     expect(dateBoxes).toHaveLength(33);
+    expect(dateBoxes[4]).toHaveTextContent(/^1木$/);
   });
 
   it('複数の日に予定がある場合、対応する予定の日に予定のタイトルが見える', () => {
