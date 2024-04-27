@@ -8,7 +8,11 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'happy-dom',
-    setupFiles: "./vitest.setup.ts"
+    setupFiles: "./vitest.setup.ts",
+    coverage: {
+      exclude: ['node_modules', 'test', 'dist', '.next','next.config.js','postcss.config.js','tailwind.config.js','vite.config.ts','jest.config.js','babel.config.js','webpack.config.js','rollup.config.js', 'prisma'],
+      reporter: ['text', 'json', 'html'],
+    },
   },
   resolve: {
     alias: {
