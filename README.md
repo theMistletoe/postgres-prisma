@@ -1,3 +1,20 @@
+
+
+# HoW to local development
+
+```sh
+cp -p .env.example .env.local
+docker compose up -d
+pnpm install
+pnpm migrate
+pnpm dev
+```
+
+
+
+
+
+
 ---
 name: Vercel Postgres + Prisma Next.js Starter
 slug: postgres-prisma
